@@ -1,0 +1,6 @@
+flask
+flask-cors
+transformers
+torch
+mysql-connector-python
+tiktoken>=0.5.1
