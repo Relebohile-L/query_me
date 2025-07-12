@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import LoginForm from "./LoginForm";
+import SignupForm from "./SignupForm";
+import RunQueryPage from "./RunQueryPage"; // import the welcome page component
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
+  const [isSignup, setIsSignup] = useState(false);
+  const [user, setUser] = useState(null); // stores logged-in user
+
+  if (user) {
+    return <RunQueryPage user={user} />; // render welcome page after login
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {isSignup ? (
+        <SignupForm onLoginClick={() => setIsSignup(false)} />
+      ) : (
+        <LoginForm
+          onSignupClick={() => setIsSignup(true)}
+          onLoginSuccess={(userData) => setUser(userData)} // pass login success handler
+        />
+      )}
     </div>
   );
 }
 
 export default App;
+
+
+
+
