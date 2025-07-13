@@ -22,7 +22,7 @@ export default function LoginForm({ onSignupClick, onLoginSuccess }) {
       const data = await res.json();
       if (res.ok) {
         setMessage(`✅ Welcome, ${data.firstName} ${data.lastName}!`);
-        onLoginSuccess(data);  // 🔥 Notify parent (App.js) of successful login
+        onLoginSuccess(data);
       } else {
         setMessage(`❌ ${data.message || "Login failed"}`);
       }
@@ -33,116 +33,85 @@ export default function LoginForm({ onSignupClick, onLoginSuccess }) {
 
   return (
     <div
+      className="d-flex justify-content-center align-items-center vh-100"
       style={{
-        minHeight: "100vh",
-        backgroundColor: "#ffefd5",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        padding: "20px",
-        fontFamily: "Arial, sans-serif",
+        background: "linear-gradient(to right, #4e54c8, #8f94fb)",
       }}
     >
       <div
-        style={{
-          width: "320px",
-          padding: "25px 30px",
-          backgroundColor: "#00796b",
-          borderRadius: "12px",
-          boxShadow: "0 6px 15px rgba(0,0,0,0.2)",
-          color: "white",
-          textAlign: "center",
-        }}
+        className="card shadow-lg border-0"
+        style={{ maxWidth: "420px", width: "100%", borderRadius: "20px" }}
       >
-        <h1 style={{ marginBottom: "24px", fontWeight: "700" }}>
-          Query Me Login
-        </h1>
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="username" style={labelStyle}>Username</label>
-          <input
-            type="text"
-            name="username"
-            id="username"
-            value={form.username}
-            onChange={handleChange}
-            required
-            placeholder="Enter your username"
-            style={inputStyle}
-          />
+        <div
+          className="card-body"
+          style={{
+            backgroundColor: "#f8f9fa",
+            borderRadius: "20px",
+          }}
+        >
+          <h2 className="text-center mb-4 text-primary fw-bold">
+            <i className="bi bi-database-fill-check me-2"></i>Query Me Login
+          </h2>
 
-          <label htmlFor="password" style={labelStyle}>Password</label>
-          <input
-            type="password"
-            name="password"
-            id="password"
-            value={form.password}
-            onChange={handleChange}
-            required
-            placeholder="Enter your password"
-            style={inputStyle}
-          />
+          <form onSubmit={handleSubmit}>
+            <div className="mb-3">
+              <label htmlFor="username" className="form-label fw-semibold text-dark">
+                <i className="bi bi-person-circle me-2 text-primary"></i>Username
+              </label>
+              <input
+                type="text"
+                className="form-control rounded-pill"
+                id="username"
+                name="username"
+                value={form.username}
+                onChange={handleChange}
+                placeholder="Enter your username"
+                required
+              />
+            </div>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-            <button type="submit" style={submitButtonStyle}>Login</button>
-            <button type="button" onClick={onSignupClick} style={switchButtonStyle}>
-              Don&apos;t have an account? Sign Up
-            </button>
-          </div>
-        </form>
+            <div className="mb-3">
+              <label htmlFor="password" className="form-label fw-semibold text-dark">
+                <i className="bi bi-lock-fill me-2 text-danger"></i>Password
+              </label>
+              <input
+                type="password"
+                className="form-control rounded-pill"
+                id="password"
+                name="password"
+                value={form.password}
+                onChange={handleChange}
+                placeholder="Enter your password"
+                required
+              />
+            </div>
 
-        {message && (
-          <p style={{ marginTop: "16px", fontSize: "14px", color: "#ffe082" }}>
-            {message}
-          </p>
-        )}
+            <div className="d-grid gap-2">
+              <button type="submit" className="btn btn-success rounded-pill fw-bold">
+                <i className="bi bi-box-arrow-in-right me-2"></i>Login
+              </button>
+              <button
+                type="button"
+                className="btn btn-outline-info rounded-pill fw-semibold"
+                onClick={onSignupClick}
+              >
+                <i className="bi bi-person-plus-fill me-2"></i>Sign Up
+              </button>
+            </div>
+          </form>
+
+          {message && (
+            <div className="alert alert-warning mt-3 py-2 text-center small rounded-pill">
+              {message}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
 }
 
-// === Styles ===
-const inputStyle = {
-  width: "100%",
-  padding: "10px 15px",
-  marginBottom: "20px",
-  borderRadius: "25px",
-  border: "none",
-  outline: "none",
-  fontSize: "16px",
-  boxSizing: "border-box",
-};
 
-const labelStyle = {
-  display: "block",
-  marginBottom: "8px",
-  textAlign: "left",
-};
-
-const submitButtonStyle = {
-  width: "100%",
-  padding: "12px",
-  backgroundColor: "#004d40",
-  color: "white",
-  fontWeight: "700",
-  fontSize: "16px",
-  borderRadius: "25px",
-  border: "none",
-  cursor: "pointer",
-  transition: "background-color 0.3s ease",
-};
-
-const switchButtonStyle = {
-  width: "100%",
-  padding: "12px",
-  backgroundColor: "#ffffff",
-  color: "#004d40",
-  fontWeight: "700",
-  fontSize: "16px",
-  borderRadius: "25px",
-  border: "2px solid #004d40",
-  cursor: "pointer",
-  transition: "all 0.3s ease",
-};
 
 
 

@@ -9,7 +9,7 @@ app = Flask(__name__)
 CORS(app)
 
 # === CONFIG ===
-COLAB_MODEL_URL = "https://2901a70f4cf0.ngrok-free.app/generate_sql"
+COLAB_MODEL_URL = "https://86ce8462e891.ngrok-free.app/generate_sql"
 
 # === MySQL CONFIG ===
 app.config['MYSQL_HOST'] = 'localhost'

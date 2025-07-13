@@ -33,142 +33,97 @@ export default function SignupForm({ onLoginClick }) {
 
   return (
     <div
+      className="d-flex justify-content-center align-items-center vh-100"
       style={{
-        minHeight: "100vh",
-        backgroundColor: "#fff0f5",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        padding: "20px",
-        fontFamily: "Arial, sans-serif",
+        background: "linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%)",
       }}
     >
       <div
-        style={{
-          width: "320px",
-          padding: "25px 30px",
-          backgroundColor: "#6a1b9a",
-          borderRadius: "12px",
-          boxShadow: "0 6px 15px rgba(0,0,0,0.2)",
-          color: "white",
-          textAlign: "center",
-        }}
+        className="card shadow-lg border-0"
+        style={{ maxWidth: "420px", width: "100%", borderRadius: "20px" }}
       >
-        <h1 style={{ marginBottom: "24px", fontWeight: "700" }}>Sign Up</h1>
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="email" style={labelStyle}>
-            Email (must match an employee)
-          </label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            value={form.email}
-            onChange={handleChange}
-            required
-            placeholder="Enter your employee email"
-            style={inputStyle}
-          />
+        <div
+          className="card-body"
+          style={{ backgroundColor: "#fdfbfb", borderRadius: "20px" }}
+        >
+          <h2 className="text-center mb-4 text-purple fw-bold">
+            <i className="bi bi-person-plus-fill me-2 text-danger"></i>Sign Up
+          </h2>
 
-          <label htmlFor="username" style={labelStyle}>
-            Username
-          </label>
-          <input
-            type="text"
-            name="username"
-            id="username"
-            value={form.username}
-            onChange={handleChange}
-            required
-            placeholder="Choose a username"
-            style={inputStyle}
-          />
+          <form onSubmit={handleSubmit}>
+            <div className="mb-3">
+              <label htmlFor="email" className="form-label fw-semibold">
+                <i className="bi bi-envelope-fill me-2 text-info"></i>Email (must match an employee)
+              </label>
+              <input
+                type="email"
+                className="form-control rounded-pill"
+                id="email"
+                name="email"
+                value={form.email}
+                onChange={handleChange}
+                placeholder="Enter your employee email"
+                required
+              />
+            </div>
 
-          <label htmlFor="password" style={labelStyle}>
-            Password
-          </label>
-          <input
-            type="password"
-            name="password"
-            id="password"
-            value={form.password}
-            onChange={handleChange}
-            required
-            placeholder="Enter a password"
-            style={inputStyle}
-          />
+            <div className="mb-3">
+              <label htmlFor="username" className="form-label fw-semibold">
+                <i className="bi bi-person-circle me-2 text-primary"></i>Username
+              </label>
+              <input
+                type="text"
+                className="form-control rounded-pill"
+                id="username"
+                name="username"
+                value={form.username}
+                onChange={handleChange}
+                placeholder="Choose a username"
+                required
+              />
+            </div>
 
-          <div
-            style={{ display: "flex", flexDirection: "column", gap: "10px" }}
-          >
-            <button type="submit" style={submitButtonStyle}>
-              Create Account
-            </button>
-            <button
-              type="button"
-              onClick={onLoginClick}
-              style={switchButtonStyle}
-            >
-              Already have an account? Login
-            </button>
-          </div>
-        </form>
+            <div className="mb-3">
+              <label htmlFor="password" className="form-label fw-semibold">
+                <i className="bi bi-lock-fill me-2 text-danger"></i>Password
+              </label>
+              <input
+                type="password"
+                className="form-control rounded-pill"
+                id="password"
+                name="password"
+                value={form.password}
+                onChange={handleChange}
+                placeholder="Enter a password"
+                required
+              />
+            </div>
 
-        {message && (
-          <p
-            style={{ marginTop: "16px", fontSize: "14px", color: "#ffe082" }}
-          >
-            {message}
-          </p>
-        )}
+            <div className="d-grid gap-2">
+              <button type="submit" className="btn btn-success rounded-pill fw-bold">
+                <i className="bi bi-person-check-fill me-2"></i>Create Account
+              </button>
+              <button
+                type="button"
+                onClick={onLoginClick}
+                className="btn btn-outline-primary rounded-pill fw-semibold"
+              >
+                <i className="bi bi-arrow-left me-2"></i>Already have an account? Login
+              </button>
+            </div>
+          </form>
+
+          {message && (
+            <div className="alert alert-warning mt-3 text-center small rounded-pill">
+              {message}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
 }
 
-// === Styles ===
-const inputStyle = {
-  width: "100%",
-  padding: "10px 15px",
-  marginBottom: "20px",
-  borderRadius: "25px",
-  border: "none",
-  outline: "none",
-  fontSize: "16px",
-  boxSizing: "border-box",
-};
-
-const labelStyle = {
-  display: "block",
-  marginBottom: "8px",
-  textAlign: "left",
-};
-
-const submitButtonStyle = {
-  width: "100%",
-  padding: "12px",
-  backgroundColor: "#4a0072",
-  color: "white",
-  fontWeight: "700",
-  fontSize: "16px",
-  borderRadius: "25px",
-  border: "none",
-  cursor: "pointer",
-  transition: "background-color 0.3s ease",
-};
-
-const switchButtonStyle = {
-  width: "100%",
-  padding: "12px",
-  backgroundColor: "#ffffff",
-  color: "#4a0072",
-  fontWeight: "700",
-  fontSize: "16px",
-  borderRadius: "25px",
-  border: "2px solid #4a0072",
-  cursor: "pointer",
-  transition: "all 0.3s ease",
-};
 
 
 
